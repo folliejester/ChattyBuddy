@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChattyBuddy.Wpf")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+199e5f7e13073df355ff2380b6bcc34896425651")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChattyBuddy.Wpf")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChattyBuddy.Wpf")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

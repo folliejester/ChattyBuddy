@@ -92,6 +92,42 @@ namespace ChattyBuddy.Wpf.Services
             return false;
         }
 
+        public async Task<bool> IsTailscaleAvailableAsync()
+        {
+            var json = await RunTailscaleStatusJson();
+            return !string.IsNullOrWhiteSpace(json);
+        }
+
+        public async Task<bool> IsTailscaleNetworkAvailableAsync()
+        {
+            var json = await RunTailscaleStatusJson();
+            if (string.IsNullOrWhiteSpace(json))
+                return false;
+            try
+            {
+                using var doc = JsonDocument.Parse(json);
+                if (doc.RootElement.TryGetProperty("Self", out var self))
+                {
+                    if (self.TryGetProperty("TailscaleIPs", out var ips) && ips.ValueKind == JsonValueKind.Array && ips.GetArrayLength() > 0)
+                        return true;
+                    if (self.TryGetProperty("Online", out var online) && online.ValueKind == JsonValueKind.True)
+                        return true;
+                }
+                if (doc.RootElement.TryGetProperty("Peer", out var peers))
+                {
+                    foreach (var p in peers.EnumerateObject())
+                    {
+                        if (p.Value.TryGetProperty("Online", out var on) && on.ValueKind == JsonValueKind.True)
+                            return true;
+                    }
+                }
+            }
+            catch
+            {
+            }
+            return false;
+        }
+
         private static string ExtractDeviceName(string rawName)
         {
             if (string.IsNullOrWhiteSpace(rawName))

@@ -91,7 +91,7 @@ namespace ChattyBuddy.Wpf.ViewModels
                 if (Devices.Count == 0)
                     StatusMessage = "No Tailscale devices found.";
                 else
-                    StatusMessage = "Select a device to connect.";
+                    StatusMessage = string.Empty;
             }
             catch
             {

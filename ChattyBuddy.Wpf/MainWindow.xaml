@@ -8,6 +8,80 @@
         WindowStartupLocation="CenterScreen"
         Loaded="MainWindow_OnLoaded"
         Foreground="{DynamicResource ChatTextForegroundBrush}">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <Style x:Key="SelectedDisplayDarkBackgroundComboBox" TargetType="ComboBox">
+            <Setter Property="Background" Value="{DynamicResource ChatControlBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource ChatTextForegroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ChatBorderBrush}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Focusable="False"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          HorizontalContentAlignment="Left"
+                                          VerticalContentAlignment="Center" />
+                            <ContentPresenter Name="ContentSite"
+                                              IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                              Margin="6,0,26,0"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left" />
+                            <Popup Name="Popup"
+                                   Placement="Bottom"
+                                   IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Fade">
+                                <Border SnapsToDevicePixels="True"
+                                        Background="{DynamicResource ChatControlBackgroundBrush}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="1">
+                                    <ScrollViewer Margin="0" SnapsToDevicePixels="True">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ToggleButton" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ThemedButton" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource ChatButtonBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource ChatButtonForegroundBrush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ChatBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="6,2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -23,56 +97,61 @@
 
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
-            <ComboBox Width="260"
-                      ItemsSource="{Binding Devices}"
-                      SelectedItem="{Binding SelectedDevice}"
-                      Margin="0,0,8,0"
-                      Background="{DynamicResource ChatControlBackgroundBrush}"
-                      Foreground="{DynamicResource ChatTextForegroundBrush}"
-                      BorderBrush="{DynamicResource ChatBorderBrush}">
-                <ComboBox.ItemContainerStyle>
-                    <Style TargetType="ComboBoxItem">
-                        <Setter Property="Background" Value="{DynamicResource ChatControlBackgroundBrush}" />
-                        <Setter Property="Foreground" Value="{DynamicResource ChatTextForegroundBrush}" />
-                        <Setter Property="Padding" Value="4,2" />
-                        <Setter Property="HorizontalContentAlignment" Value="Left" />
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="{DynamicResource ChatBorderBrush}" />
-                                <Setter Property="Foreground" Value="{DynamicResource ChatTextForegroundBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{DynamicResource ChatBorderBrush}" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ComboBox.ItemContainerStyle>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Ellipse Width="10"
-                                     Height="10"
-                                     Margin="0,0,4,0">
-                                <Ellipse.Style>
-                                    <Style TargetType="Ellipse">
-                                        <Setter Property="Fill" Value="Red" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Online}" Value="True">
-                                                <Setter Property="Fill" Value="LimeGreen" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Ellipse.Style>
-                            </Ellipse>
-                            <TextBlock Text="{Binding Name}"
-                                       Foreground="{DynamicResource ChatTextForegroundBrush}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <Grid Margin="0,0,8,0" Width="260">
+                <ComboBox x:Name="DeviceComboBox"
+                          Width="260"
+                          ItemsSource="{Binding Devices}"
+                          SelectedItem="{Binding SelectedDevice}"
+                          Style="{StaticResource SelectedDisplayDarkBackgroundComboBox}"
+                          Background="{DynamicResource ChatControlBackgroundBrush}"
+                          Foreground="{DynamicResource ChatTextForegroundBrush}"
+                          BorderBrush="{DynamicResource ChatBorderBrush}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="10"
+                                         Height="10"
+                                         Margin="0,0,4,0">
+                                    <Ellipse.Style>
+                                        <Style TargetType="Ellipse">
+                                            <Setter Property="Fill" Value="Red" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Online}" Value="True">
+                                                    <Setter Property="Fill" Value="LimeGreen" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Ellipse.Style>
+                                </Ellipse>
+                                <TextBlock Text="{Binding Name}"
+                                           Foreground="{DynamicResource ChatTextForegroundBrush}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Select a device to connect"
+                           Foreground="{DynamicResource ChatSubtleTextForegroundBrush}"
+                           Margin="8,0,36,0"
+                           VerticalAlignment="Center"
+                           IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedDevice}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+
             <Button Content="Refresh"
                     Width="80"
-                    Command="{Binding RefreshCommand}" />
+                    Command="{Binding RefreshCommand}"
+                    Style="{StaticResource ThemedButton}" />
         </StackPanel>
 
         <TextBlock Grid.Row="2"
@@ -85,7 +164,8 @@
             <Button Content="Connect"
                     Width="90"
                     IsDefault="True"
-                    Command="{Binding ConnectCommand}" />
+                    Command="{Binding ConnectCommand}"
+                    Style="{StaticResource ThemedButton}" />
         </StackPanel>
     </Grid>
 </Window>

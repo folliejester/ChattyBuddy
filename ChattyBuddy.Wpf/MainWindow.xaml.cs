@@ -8,6 +8,8 @@ using Microsoft.Win32;
 using ChattyBuddy.Wpf.Models;
 using ChattyBuddy.Wpf.Services;
 using ChattyBuddy.Wpf.ViewModels;
+using System.Diagnostics;
+using System.IO;
 
 namespace ChattyBuddy.Wpf;
 
@@ -29,8 +31,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         this.suppressAutoConnect = suppressAutoConnect;
         var tailscaleService = new TailscaleService();
-        var selectedDeviceStore = new SelectedDeviceStore();
-        viewModel = new DeviceSelectionViewModel(tailscaleService, selectedDeviceStore);
+        viewModel = new DeviceSelectionViewModel(tailscaleService, new SelectedDeviceStore());
         viewModel.Connected += ViewModelOnConnected;
         DataContext = viewModel;
         SourceInitialized += MainWindow_OnSourceInitialized;
@@ -40,6 +41,7 @@ public partial class MainWindow : Window
     private async void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
     {
         SystemTheme.Apply(this);
+        EnsureAutoLaunch();
         await viewModel.InitializeAsync(!suppressAutoConnect);
     }
 
@@ -70,6 +72,34 @@ public partial class MainWindow : Window
         if (msg == WM_SETTINGCHANGE || msg == WM_THEMECHANGED)
             SystemTheme.Apply(this);
         return IntPtr.Zero;
+    }
+
+    private void EnsureAutoLaunch()
+    {
+        try
+        {
+            var runKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+            using var key = Registry.CurrentUser.OpenSubKey(runKey, writable: true) ?? Registry.CurrentUser.CreateSubKey(runKey);
+            string exePath = null;
+            var procPath = Process.GetCurrentProcess().MainModule?.FileName;
+            if (!string.IsNullOrWhiteSpace(procPath) && Path.GetExtension(procPath).Equals(".exe", System.StringComparison.OrdinalIgnoreCase))
+                exePath = procPath;
+            else
+            {
+                var asm = System.Reflection.Assembly.GetEntryAssembly()?.Location;
+                var dir = string.IsNullOrEmpty(asm) ? AppContext.BaseDirectory : Path.GetDirectoryName(asm);
+                var candidate = Path.Combine(dir ?? string.Empty, "ChattyBuddy.exe");
+                if (File.Exists(candidate))
+                    exePath = candidate;
+                else if (!string.IsNullOrWhiteSpace(asm))
+                    exePath = asm;
+            }
+            if (!string.IsNullOrWhiteSpace(exePath))
+                key.SetValue("ChattyBuddy", $"\"{exePath}\"");
+        }
+        catch
+        {
+        }
     }
 }
 

@@ -1,5 +1,7 @@
-C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\ChattyBuddy.Wpf.exe
-C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\ChattyBuddy.Wpf.dll
-C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\ChattyBuddy.Wpf.deps.json
-C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\ChattyBuddy.Wpf.runtimeconfig.json
-C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\ChattyBuddy.Wpf.pdb
+C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\ChattyBuddy.pdb
+C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\D3DCompiler_47_cor3.dll
+C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\PenImc_cor3.dll
+C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\PresentationNative_cor3.dll
+C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\vcruntime140_cor3.dll
+C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\wpfgfx_cor3.dll
+C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\ChattyBuddy.exe

@@ -10,13 +10,13 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("ChattyBuddy.Wpf")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("ChattyBuddy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3911d15a2ab469cd6c95d0b8bdc1c1ffeb273269")]
-[assembly: System.Reflection.AssemblyProductAttribute("ChattyBuddy.Wpf")]
-[assembly: System.Reflection.AssemblyTitleAttribute("ChattyBuddy.Wpf")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2.2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.2+d07d257aa7250c3c894a5e284e9576d17436f775")]
+[assembly: System.Reflection.AssemblyProductAttribute("ChattyBuddy")]
+[assembly: System.Reflection.AssemblyTitleAttribute("ChattyBuddy")]
+[assembly: System.Reflection.AssemblyVersionAttribute("2.2")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 

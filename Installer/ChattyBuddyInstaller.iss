@@ -1,6 +1,6 @@
 [Setup]
 AppName=ChattyBuddy
-AppVersion=1.0
+AppVersion=2.2
 DefaultDirName={pf}\ChattyBuddy
 DefaultGroupName=ChattyBuddy
 Compression=lzma
@@ -11,10 +11,10 @@ SetupIconFile="C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\As
 Source: "C:\Users\fj\Documents\Developments\ChattyBuddy\ChattyBuddy.Wpf\bin\Release\net10.0-windows\win-x64\publish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{group}\ChattyBuddy"; Filename: "{app}\ChattyBuddy.Wpf.exe"
+Name: "{group}\ChattyBuddy"; Filename: "{app}\ChattyBuddy.exe"
 
 [Run]
-Filename: "{app}\ChattyBuddy.Wpf.exe"; Description: "Launch ChattyBuddy"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\ChattyBuddy.exe"; Description: "Launch ChattyBuddy"; Flags: nowait postinstall skipifsilent
 
 [Code]
 var

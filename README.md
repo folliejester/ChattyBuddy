@@ -55,6 +55,10 @@ A: The application automatically follows your Windows system theme settings.
 **Q: What does the "Nudge" feature do?**
 A: It plays a sound on the recipient's device and shakes their window to get their attention.
 
+**Q: Is it lightweight?**
+A: You be the judge.
+![Task Manager](https://i.imgur.com/F2Wme3B.png)
+
 ## Contributing
 Fork the repo, create a branch, implement changes, and open a PR. See CONTRIBUTING.md in repo (if present).
 

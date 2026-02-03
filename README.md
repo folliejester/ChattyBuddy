@@ -66,7 +66,7 @@ A: It plays a sound on the recipient's device and shakes their window to get the
 
 A: You be the judge.
 
-![Task Manager](https://i.imgur.com/F2Wme3B.png)
+![Task Manager](https://i.imgur.com/M8D2lB1.png)
 
 ## Contributing
 Fork the repo, create a branch, implement changes, and open a PR. See CONTRIBUTING.md in repo (if present).

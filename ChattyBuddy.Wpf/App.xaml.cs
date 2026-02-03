@@ -9,9 +9,6 @@ using System.IO;
 
 namespace ChattyBuddy.Wpf
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private const long BootThresholdMs = 120_000;
@@ -69,28 +66,26 @@ namespace ChattyBuddy.Wpf
                 }
             }
 
-            bool isLikelyBootLaunch = Environment.TickCount64 < BootThresholdMs;
+            var main = new MainWindow(false);
 
-            if (!isLikelyBootLaunch)
+            var isAutoStart = false;
+            if (e.Args != null)
             {
-                var main = new MainWindow(false);
-                main.Show();
-                return;
+                foreach (var arg in e.Args)
+                {
+                    if (string.Equals(arg, "/autostart", StringComparison.OrdinalIgnoreCase))
+                    {
+                        isAutoStart = true;
+                        break;
+                    }
+                }
             }
 
-            var tailscale = new TailscaleService();
+            var isLikelyBootLaunch = Environment.TickCount64 < BootThresholdMs;
+            if (isAutoStart || isLikelyBootLaunch)
+                await Task.Delay(TimeSpan.FromMinutes(1));
 
-            await Task.Run(async () =>
-            {
-                while (!await tailscale.IsTailscaleNetworkAvailableAsync())
-                    await Task.Delay(2000);
-            });
-
-            Dispatcher.Invoke(() =>
-            {
-                var main = new MainWindow(false);
-                main.Show();
-            });
+            main.Show();
         }
     }
 }

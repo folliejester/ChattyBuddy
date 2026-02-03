@@ -95,7 +95,7 @@ public partial class MainWindow : Window
                     exePath = asm;
             }
             if (!string.IsNullOrWhiteSpace(exePath))
-                key.SetValue("ChattyBuddy", $"\"{exePath}\"");
+                key.SetValue("ChattyBuddy", $"\"{exePath}\" /autostart");
         }
         catch
         {

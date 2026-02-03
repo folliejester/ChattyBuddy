@@ -35,6 +35,26 @@ Place the publish output into the installer folder before building the Inno Setu
 - If auto-start fails, verify the Run registry entry at `HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`.
 - If update downloads are flagged by AV, submit the binary to VirusTotal and request vendor reanalysis; code-signing reduces false positives.
 
+## FAQ
+
+**Q: Do I need to install Tailscale separately?**
+A: Yes, Tailscale must be installed and running on your machine for ChattyBuddy to discover peers.
+
+**Q: Does ChattyBuddy work over the regular internet?**
+A: ChattyBuddy is designed to work over your private Tailscale mesh network.
+
+**Q: Where are my chat logs stored?**
+A: Chat history is stored locally on your device.
+
+**Q: Does ChattyBuddy run on macOS or Linux?**
+A: Currently, ChattyBuddy is a Windows-only application (WPF).
+
+**Q: How do I switch between Dark and Light mode?**
+A: The application automatically follows your Windows system theme settings.
+
+**Q: What does the "Nudge" feature do?**
+A: It plays a sound on the recipient's device and shakes their window to get their attention.
+
 ## Contributing
 Fork the repo, create a branch, implement changes, and open a PR. See CONTRIBUTING.md in repo (if present).
 

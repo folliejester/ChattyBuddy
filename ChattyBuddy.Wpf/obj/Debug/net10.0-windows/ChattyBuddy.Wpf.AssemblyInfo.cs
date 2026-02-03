@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChattyBuddy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.3")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.3+d5a4d3739c078e1c3d1c238f7b99dac7c0c4ddd5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.3+6dd1a498e867cac500da37ba5a7b8241f4a73062")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChattyBuddy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChattyBuddy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.3")]

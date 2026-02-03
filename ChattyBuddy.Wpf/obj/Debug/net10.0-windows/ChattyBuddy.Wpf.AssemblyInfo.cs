@@ -12,11 +12,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChattyBuddy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("2.2")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.2+9bd541b83096ff3aabd1ed26f43f821eb61bd10e")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2.3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.3+d5a4d3739c078e1c3d1c238f7b99dac7c0c4ddd5")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChattyBuddy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChattyBuddy")]
-[assembly: System.Reflection.AssemblyVersionAttribute("2.2")]
+[assembly: System.Reflection.AssemblyVersionAttribute("2.3")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 

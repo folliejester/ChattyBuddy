@@ -75,7 +75,7 @@ namespace ChattyBuddy.Wpf {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ChattyBuddy;V2.2;component/chatwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ChattyBuddy;V2.3;component/chatwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\ChatWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -1,6 +1,6 @@
 [Setup]
 AppName=ChattyBuddy
-AppVersion=2.2
+AppVersion=2.3
 DefaultDirName={pf}\ChattyBuddy
 DefaultGroupName=ChattyBuddy
 Compression=lzma
